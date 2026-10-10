@@ -54,10 +54,10 @@ SocketPath=/custom/path/to/socket.sock
 #### `ping` — 健康检查
 
 ```json
-// 请求
+# 请求
 {"type": "ping"}
 
-// 响应
+# 响应
 {"pong": true}
 ```
 
@@ -66,13 +66,13 @@ SocketPath=/custom/path/to/socket.sock
 将文字提交到当前焦点应用的输入框。
 
 ```json
-// 请求
+# 请求
 {"type": "commit", "text": "你好世界"}
 
-// 响应
+# 响应
 {"success": true}
 
-// 错误响应（无焦点上下文时）
+# 错误响应（无焦点上下文时）
 {"success": false, "error": "no focused input context"}
 ```
 
@@ -81,10 +81,10 @@ SocketPath=/custom/path/to/socket.sock
 在 fcitx5 输入面板的辅助区域显示一条消息。
 
 ```json
-// 请求
+# 请求
 {"type": "show", "text": "正在处理..."}
 
-// 响应
+# 响应
 {"success": true}
 ```
 
@@ -93,10 +93,10 @@ SocketPath=/custom/path/to/socket.sock
 在输入面板显示预编辑文本，模拟输入法正在组合的状态。
 
 ```json
-// 请求
+# 请求
 {"type": "preedit", "text": "nihao", "cursor": 5}
 
-// 响应
+# 响应
 {"success": true}
 ```
 
@@ -105,10 +105,10 @@ SocketPath=/custom/path/to/socket.sock
 清除输入面板上由本模块设置的所有内容。
 
 ```json
-// 请求
+# 请求
 {"type": "clear"}
 
-// 响应
+# 响应
 {"success": true}
 ```
 
