@@ -63,11 +63,14 @@ SocketPath=/custom/path/to/socket.sock
 
 #### `commit` — 提交文字
 
-将文字提交到当前焦点应用的输入框。
+将文字提交到当前焦点应用的输入框。支持多行文本：`text` 中的 `\n` 会被作为换行符插入（等同于粘贴行为，不会触发 Enter/Return 键事件）。
 
 ```json
 # 请求
 {"type": "commit", "text": "你好世界"}
+
+# 多行示例
+{"type": "commit", "text": "第一段\n第二段"}
 
 # 响应
 {"success": true}

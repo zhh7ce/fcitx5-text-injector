@@ -68,6 +68,7 @@ ipc_server_ = std::make_unique<IPCServer>(
 - 服务端读取到 EOF 后处理请求并发送响应
 - 超时：接收和发送均为 2 秒
 - 未知命令类型返回 `{"success": false, "error": "unknown command: ..."}`
+- `commit` 命令的 `text` 字段支持 `\n` 换行，行为等同于粘贴（插入换行符），不会触发 Enter 键事件
 
 ### InputContext 获取
 
