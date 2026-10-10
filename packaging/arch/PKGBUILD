@@ -1,0 +1,32 @@
+# Maintainer: Your Name <you@example.com>
+pkgname=fcitx5-text-injector
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="Fcitx5 module that commits text to any app via Unix socket IPC"
+arch=('x86_64')
+url="https://github.com/yourname/fcitx5-text-injector"
+license=('MIT')
+groups=('fcitx5-im')
+depends=('fcitx5')
+makedepends=('cmake' 'nlohmann-json')
+source=()
+sha256sums=()
+
+_srcdir="$startdir/../.."
+
+prepare() {
+    mkdir -p "$srcdir/$pkgname-$pkgver"
+    cp -r "$_srcdir"/src "$_srcdir"/data "$_srcdir"/CMakeLists.txt \
+        "$srcdir/$pkgname-$pkgver/"
+}
+
+build() {
+    cmake -B build -S "$srcdir/$pkgname-$pkgver" \
+        -DCMAKE_INSTALL_PREFIX=/usr \
+        -DCMAKE_BUILD_TYPE=Release
+    cmake --build build
+}
+
+package() {
+    DESTDIR="$pkgdir" cmake --install build
+}
