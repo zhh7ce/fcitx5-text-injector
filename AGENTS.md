@@ -24,7 +24,6 @@
 │  text_injector.so (AddonInstance)               │
 │  ├── TextInjectorModule                         │
 │  │   ├── EventDispatcher (线程调度)              │
-│  │   ├── Key event watcher (F12 触发)           │
 │  │   ├── commitText() → ic->commitString()      │
 │  │   ├── showStatus() → InputPanel.setAuxUp()   │
 │  │   ├── showPreedit() → InputPanel.setClientPreedit() │
@@ -82,7 +81,7 @@ ipc_server_ = std::make_unique<IPCServer>(
 | 文件 | 职责 | 行数 |
 |------|------|------|
 | `src/module.h` | 模块类声明、配置定义 | ~50 |
-| `src/module.cpp` | 模块实现：初始化、事件处理、文字提交、UI、工厂注册 | ~200 |
+| `src/module.cpp` | 模块实现：初始化、文字提交、UI、工厂注册 | ~200 |
 | `src/ipc_server.h` | IPC 服务端接口、回调类型定义 | ~40 |
 | `src/ipc_server.cpp` | Socket 监听、连接处理、JSON 解析、命令分发 | ~180 |
 | `data/text_injector.conf` | fcitx5 addon 元数据 | ~10 |
@@ -97,27 +96,6 @@ ipc_server_ = std::make_unique<IPCServer>(
 2. 如果需要新的回调类型，在 `IPCServer` 类中添加对应的 `Handler` typedef 和成员
 3. 在 `TextInjectorModule` 构造函数中传入新的回调 lambda（记得用 `event_dispatcher_.schedule()` 包装）
 4. 在 `TextInjectorModule` 中实现对应的方法
-
-### 添加 surround text 支持
-
-参考 VocoType 的 `surroundingText()` / `deleteSurroundingText()` 用法：
-
-```cpp
-auto *ic = instance_->lastFocusedInputContext();
-const auto &surrounding = ic->surroundingText();
-// surrounding.text() 获取上下文文本
-// surrounding.cursor() 获取光标位置
-ic->deleteSurroundingText(offset, length);
-```
-
-### 添加候选词列表
-
-```cpp
-#include <fcitx/candidatelist.h>
-
-auto &panel = ic->inputPanel();
-// 创建自定义 CandidateList 并设置到 panel
-```
 
 ## 构建与测试
 

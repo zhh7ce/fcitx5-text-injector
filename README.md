@@ -20,7 +20,7 @@
    │  {"type":"commit",             │  │                              │
    │   "text":"你好世界"}            │  │  IPC Server ──► commitString()│
    │                                │  │                              │
-   │  ◄── {"success":true} ────────┤  │  Key Watcher (F12)            │
+   │  ◄── {"success":true} ────────┤  │                              │
    │                                │  └──────────────────────────────┘
 ```
 
@@ -30,7 +30,6 @@
 - **状态显示**：在 fcitx5 输入面板显示状态消息
 - **预编辑文本**：显示预编辑（preedit）文本，模拟输入法组合状态
 - **面板清除**：清除输入面板上的所有自定义内容
-- **热键触发**：可配置的触发键（默认 F12）
 - **线程安全**：IPC 线程通过 EventDispatcher 调度回 fcitx5 主事件循环
 
 ## IPC 协议
@@ -208,8 +207,6 @@ sudo pacman -R fcitx5-text-injector
 
 ```ini
 [TextInjector]
-# 触发快捷键（默认 F12）
-TriggerKey=F12
 # 自定义 socket 路径（留空使用默认路径）
 SocketPath=
 ```
